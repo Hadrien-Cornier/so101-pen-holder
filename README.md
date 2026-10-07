@@ -174,20 +174,20 @@ I bought it for four reasons:
 
 ### The tablet values
 
-The table gives the values from the [Wacom Intuos technical specifications](https://www.wacom.com/en-us/products/pen-tablets/wacom-intuos), read on 7 October 2026:
+The table gives the values from the [Wacom Intuos technical specifications](https://www.wacom.com/en-us/products/pen-tablets/wacom-intuos) and the [Wacom Important Product Information for the CTL-4100](https://files.bbystatic.com/MNDaVNuYo7JVwmFl9W/83Q==/0ba65b21-5c0c-4265-b501-8495091d22c5.pdf) (a copy on the Best Buy site). I read both on 7 October 2026.
 
 | Property | Value |
 |---|---|
-| Accuracy | ±0.25 mm. Wacom calls it the "digital tolerance in accuracy". |
+| Accuracy | ±0.25 mm at the center of the tablet. Wacom calls it the "digital tolerance in accuracy". |
 | Resolution | 2540 lines per inch, which is 0.01 mm |
 | Report rate | 133 per second |
-| Reading height | 7 mm above the surface |
+| Reading height | 7 mm above the surface, at the center |
 | Active area | 152 × 95 mm |
 | Tablet size | 200 × 160 × 8.8 mm |
 | Pressure levels | 4096 |
 | Pen | Wacom Pen 4K (LP-1100K), 11.2 g, no battery, no ink |
 
-Wacom does not say where on the tablet or at which pen angle the ±0.25 mm applies. So I use two rules:
+Wacom gives the ±0.25 mm and the 7 mm reading height for the center of the tablet only. It gives no value for the edges or for a tilted pen. So I use two rules:
 
 - **Keep the drawing 10 mm inside the active area.** Wacom gives no value for the edges, and other makers publish a larger error at the edges. The usable area is then 132 × 75 mm.
 - **Keep the pen vertical.** The coil of the pen is above the nib, so a tilted pen moves the reading. The Intuos S does not measure the tilt, so it cannot correct it. The holder keeps the pen vertical in the drawing pose.
