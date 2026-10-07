@@ -1,0 +1,130 @@
+{
+  "frame": "SO-101 MuJoCo `gripper` body frame, mm",
+  "pen_axis_tip_to_top": [
+    0.0,
+    -0.342,
+    0.9397
+  ],
+  "clamps_mm_above_tip": [
+    26.0,
+    69.0
+  ],
+  "side_screw_xz_mm": [
+    -19.1,
+    -73.3
+  ],
+  "mass_g_est": {
+    "sleeve": 27.2,
+    "thumbscrew_each": 2.1
+  },
+  "sleeve_bbox_mm": [
+    43.1,
+    66.9,
+    62.6
+  ],
+  "pens": [
+    {
+      "pen": "Wacom Pen 4K (LP1100K)",
+      "diameter_mm": 12.0,
+      "axis_shift_toward_gripper_mm": 0.71,
+      "tip_mm": [
+        0.0,
+        -5.34,
+        -119.76
+      ],
+      "tip_off_wrist_roll_axis_mm": 5.34
+    },
+    {
+      "pen": "BIC 4-Colour",
+      "diameter_mm": 11.6,
+      "axis_shift_toward_gripper_mm": 0.99,
+      "tip_mm": [
+        0.0,
+        -5.07,
+        -119.66
+      ],
+      "tip_off_wrist_roll_axis_mm": 5.07
+    },
+    {
+      "pen": "Pilot V5",
+      "diameter_mm": 10.6,
+      "axis_shift_toward_gripper_mm": 1.7,
+      "tip_mm": [
+        0.0,
+        -4.41,
+        -119.42
+      ],
+      "tip_off_wrist_roll_axis_mm": 4.41
+    },
+    {
+      "pen": "13 mm pen",
+      "diameter_mm": 13.0,
+      "axis_shift_toward_gripper_mm": 0.0,
+      "tip_mm": [
+        0.0,
+        -6.0,
+        -120.0
+      ],
+      "tip_off_wrist_roll_axis_mm": 6.0
+    },
+    {
+      "pen": "10 mm pen",
+      "diameter_mm": 10.0,
+      "axis_shift_toward_gripper_mm": 2.12,
+      "tip_mm": [
+        0.0,
+        -4.01,
+        -119.27
+      ],
+      "tip_off_wrist_roll_axis_mm": 4.01
+    },
+    {
+      "pen": "8 mm pen",
+      "diameter_mm": 8.0,
+      "axis_shift_toward_gripper_mm": 3.54,
+      "tip_mm": [
+        0.0,
+        -2.68,
+        -118.79
+      ],
+      "tip_off_wrist_roll_axis_mm": 2.68
+    }
+  ],
+  "checks": {
+    "sleeve_vs_fixed_finger_mm3": 0.027,
+    "sleeve_vs_jaw_servo_mm3": 0.0,
+    "moving_jaw_stop_rad": 0.015,
+    "sleeve_vs_moving_jaw_at_0.3_rad_mm3": 0.0,
+    "sleeve_vs_moving_jaw_at_0.6_rad_mm3": 0.0,
+    "sleeve_vs_moving_jaw_at_1.0_rad_mm3": 0.0,
+    "sleeve_vs_moving_jaw_at_1.4_rad_mm3": 0.0,
+    "fitting_path_vs_open_moving_jaw_mm3": 0.0,
+    "fitting_path_vs_fixed_jaw_mm3": 0.011,
+    "pen Wacom Pen 4K (LP1100K) vs sleeve_mm3": 0.0,
+    "pen Wacom Pen 4K (LP1100K) vs gripper_mm3": 0.0,
+    "pen BIC 4-Colour vs sleeve_mm3": 0.0,
+    "pen BIC 4-Colour vs gripper_mm3": 0.0,
+    "pen Pilot V5 vs sleeve_mm3": 0.0,
+    "pen Pilot V5 vs gripper_mm3": 0.0,
+    "pen 13 mm pen vs sleeve_mm3": 0.0,
+    "pen 13 mm pen vs gripper_mm3": 0.0,
+    "pen 10 mm pen vs sleeve_mm3": 0.0,
+    "pen 10 mm pen vs gripper_mm3": 0.0,
+    "pen 8 mm pen vs sleeve_mm3": 0.0,
+    "pen 8 mm pen vs gripper_mm3": 0.0,
+    "pen screw, 8 mm pen, clamp at 26 mm, vs sleeve_mm3": 0.0,
+    "pen screw, 8 mm pen, clamp at 26 mm, vs gripper_mm3": 0.0,
+    "pen screw, 8 mm pen, clamp at 69 mm, vs sleeve_mm3": 0.0,
+    "pen screw, 8 mm pen, clamp at 69 mm, vs gripper_mm3": 0.0,
+    "pen screw, 13 mm pen, clamp at 26 mm, vs sleeve_mm3": 0.063,
+    "pen screw, 13 mm pen, clamp at 26 mm, vs gripper_mm3": 0.0,
+    "pen screw, 13 mm pen, clamp at 69 mm, vs sleeve_mm3": 0.063,
+    "pen screw, 13 mm pen, clamp at 69 mm, vs gripper_mm3": 0.0,
+    "side screw vs sleeve_mm3": 0.061,
+    "side screw vs jaw servo and moving jaw_mm3": 0.0,
+    "side screw head gap to its boss_mm": 3.25,
+    "pen screw head gap to its boss, 8 mm pen_mm": 1.664,
+    "lowest sleeve point above the tip_mm": 14.274
+  },
+  "failed": []
+}

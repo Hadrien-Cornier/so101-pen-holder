@@ -1,0 +1,15 @@
+SO-101 pen holder
+Copyright 2026 Hadrien Cornier
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The sleeve pocket follows the shape of the SO-101 fixed finger. The gripper
+meshes in cad/meshes/ are copied without change from MuJoCo Menagerie,
+folder robotstudio_so101, commit 822c2d8f877dd166c5b7d3c9f7e3c3b6589473b7
+(https://github.com/google-deepmind/mujoco_menagerie), Apache License 2.0,
+see cad/meshes/LICENSE.mujoco_menagerie. They come from the SO-ARM100 CAD by
+TheRobotStudio (https://github.com/TheRobotStudio/SO-ARM100), Apache
+License 2.0.
+
+The SO-101 is a design of TheRobotStudio and Hugging Face. This project is
+not affiliated with them.
