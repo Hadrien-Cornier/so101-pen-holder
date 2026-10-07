@@ -12,6 +12,7 @@ This is a printed sleeve that holds a pen on the stock gripper of the SO-101 rob
 | Printed parts | 1 sleeve (27 g) and 3 identical M8 thumbscrews (2 g each) |
 | Parts to buy | none |
 | Pens | any round pen from 8 to 13 mm, for example a Wacom Pen 4K, a BIC 4-Colour or a Pilot V5 |
+| Tablet | the Wacom Intuos S (CTL-4100), ±0.25 mm. See [Measure the tip with a Wacom tablet](#measure-the-tip-with-a-wacom-tablet). |
 | Changes to the arm | none. The sleeve slides onto the fixed finger. |
 | Fits | the stock SO-101 follower gripper (`Wrist_Roll_Follower_SO101`) |
 | License | Apache-2.0 |
@@ -32,6 +33,8 @@ The test works only if the holder adds no error of its own. My first pen was tap
 - **The tip position was not known.** My best fit of the tip position had a residual of 3 mm. That is more than the error that I want to see.
 
 I searched GitHub, the SO-ARM100 repository, Printables, Thingiverse, MakerWorld, Cults3D and the LeRobot forum. I found grippers and camera mounts, but no pen holder for the SO-100 or the SO-101. So I designed one.
+
+Ink shows the shape of an error, but it gives no numbers and no times. To measure the tip, I also bought a Wacom drawing tablet. The holder takes its pen. The section [Measure the tip with a Wacom tablet](#measure-the-tip-with-a-wacom-tablet) explains why.
 
 The holder has five goals:
 
@@ -78,7 +81,7 @@ The cost of the sleeve is a shorter distance between the clamps (43 mm), and a h
 ## What you need
 
 - An FDM 3D printer and about 34 g of filament. PETG is the best choice, because it creeps less than PLA under the screw force. PLA also works.
-- A soft pad, 2 to 5 mm thick, to put under the paper. For example, use a mouse pad, a felt sheet or thin foam. The pen is fixed in the holder, so the pad takes up small errors in the height of the arm.
+- A soft pad, 2 to 5 mm thick, to put under the paper. For example, use a mouse pad, a felt sheet or thin foam. The pen is fixed in the holder, so the pad takes up small errors in the height of the arm. On a Wacom tablet, do not use the pad.
 - A stock SO-101 follower arm. The optional compliant gripper has a different finger, and the sleeve does not fit it.
 
 ## Print the parts
@@ -153,6 +156,57 @@ For another pen, measure its diameter at the two clamps with calipers. Then use 
 - The pen axis, from the tip up, is (0, −sin 20°, cos 20°).
 
 If the pen is tapered, the two clamps see two diameters, and the pen tilts a little. Measure both diameters.
+
+## Measure the tip with a Wacom tablet
+
+I bought a Wacom Intuos S drawing tablet (model CTL-4100, wired) on 5 October 2026. A drawing tablet senses the position of its own pen, without contact. The holder takes this pen, the Wacom Pen 4K (LP-1100K).
+
+![The SO-101 draws on the Wacom Intuos S, in the arm model. The white line is the active area of the tablet. The green line is the usable area, 10 mm inside it. The arm reaches all 28 green points with the pen vertical.](images/on-tablet.png)
+
+### Why I bought this tablet
+
+I bought it for four reasons:
+
+- **It measures the tip, not the joints.** The joint encoders measure the joint angles. The arm model then calculates the tip, so the encoders cannot see bending, gear play or errors in the model. The tablet measures the tip itself.
+- **It records the time.** The tablet sends the tip position 133 times per second. That is more than 2 times the 60 Hz control rate of the arm. So I can align the tablet data with the arm log and see when the arm is late, not only where it goes.
+- **Its tolerance is small compared with the error.** Wacom gives ±0.25 mm. I expect a drawing error of about 1.2 mm RMS, and 1 mrad on every joint moves the tip by about 0.3 mm.
+- **It is cheap, and it adds nothing to the arm.** It costs about 40 USD. The pen has no battery and no cable, so no wire pulls on the arm.
+
+### The tablet values
+
+The table gives the values from the [Wacom Intuos technical specifications](https://www.wacom.com/en-us/products/pen-tablets/wacom-intuos), read on 7 October 2026:
+
+| Property | Value |
+|---|---|
+| Accuracy | ±0.25 mm. Wacom calls it the "digital tolerance in accuracy". |
+| Resolution | 2540 lines per inch, which is 0.01 mm |
+| Report rate | 133 per second |
+| Reading height | 7 mm above the surface |
+| Active area | 152 × 95 mm |
+| Tablet size | 200 × 160 × 8.8 mm |
+| Pressure levels | 4096 |
+| Pen | Wacom Pen 4K (LP-1100K), 11.2 g, no battery, no ink |
+
+Wacom does not say where on the tablet or at which pen angle the ±0.25 mm applies. So I use two rules:
+
+- **Keep the drawing 10 mm inside the active area.** Wacom gives no value for the edges, and other makers publish a larger error at the edges. The usable area is then 132 × 75 mm.
+- **Keep the pen vertical.** The coil of the pen is above the nib, so a tilted pen moves the reading. The Intuos S does not measure the tilt, so it cannot correct it. The holder keeps the pen vertical in the drawing pose.
+
+### Put the tablet under the arm
+
+1. Put the center of the active area 181 mm in front of the `shoulder_pan` axis, with the long side across the arm. That is about 155 mm in front of the front edge of the base.
+2. Tape or clamp the tablet to the table. Do not put the soft pad under the tablet, because the tablet must not move.
+3. In your arm model, set the drawing surface 8.8 mm above the table.
+4. Put the Pen 4K in the holder as in [Fit the holder](#fit-the-holder). Its tip position is in the [pen table](#pens-and-the-tip-position).
+
+Without the soft pad, a height error of the arm pushes the pen into the tablet or lifts it. You can use the tablet in two ways:
+
+- **Hover:** command the tip 2 to 3 mm above the surface. The tablet reads the pen up to 7 mm away, and there is no drag. Wacom does not publish the accuracy in hover.
+- **Contact:** let the tip touch the surface. The tablet also records the pen pressure, so you know when the pen touches.
+
+In the arm model, the arm reaches the full usable area. With the pen vertical, an inverse kinematics solution exists at all 28 points of a 4 × 7 grid, at contact and at 3 mm hover. The lowest point of the arm stays 20 mm above the tablet. These values come from the [MuJoCo Menagerie SO-101 model](https://github.com/google-deepmind/mujoco_menagerie/tree/main/robotstudio_so101), not from the real arm. The results are in [`results/tablet_reach.json`](results/tablet_reach.json).
+
+I did not test the tablet with the arm yet. The first tests are the noise of a still pen with the servos off and on, the reading at hover heights from 0 to 7 mm, and the effect of the servo magnets near the pen.
 
 ## What the CAD checks
 
