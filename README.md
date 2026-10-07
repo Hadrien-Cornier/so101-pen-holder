@@ -16,6 +16,10 @@ This is a printed sleeve that holds a pen on the stock gripper of the SO-101 rob
 | Fits | the stock SO-101 follower gripper (`Wrist_Roll_Follower_SO101`) |
 | License | Apache-2.0 |
 
+The holder on the stock gripper, from four sides. The blue sleeve is the printed part, and the orange parts are the printed thumbscrews:
+
+![The pen holder on the stock SO-101 gripper, seen from four sides](images/on-gripper.png)
+
 ## Why a pen on a robot arm
 
 A drawing is a simple test of how accurately an arm follows a path. When the arm leaves the path, the line on the paper shows it. You can see the error without a log file or a plot, and you can compare two controllers on the same sheet.
