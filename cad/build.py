@@ -5,10 +5,13 @@
 Units are mm. Every coordinate is in the frame of the `gripper` body of the SO-101 MuJoCo model
 (MuJoCo Menagerie `robotstudio_so101`): z is the wrist_roll axis and the fingers point to -z.
 
-The printed parts:
-  sleeve.stl         slides up onto the end of the stock fixed finger and holds the pen in two V clamps
-  thumbscrew.stl     print 3: two press the pen into the V clamps, one presses the side of the finger
-  thread_coupon.stl  a short piece of the M8 thread; print it first to test the screw fit on your printer
+The printed parts, placed for printing (see print_orientation.py):
+  sleeve.stl         slides up onto the end of the stock fixed finger and holds the pen in two V clamps.
+                     Placed with the pen axis vertical and the tip end up, on the end of the upper thread boss.
+  thumbscrew.stl     print 3: two press the pen into the V clamps, one presses the side of the finger. Head down.
+  thread_coupon.stl  a short piece of the M8 thread; print it first to test the screw fit on your printer.
+                     Its hole is horizontal, like the thread holes of the sleeve in its print orientation.
+results/sleeve_in_gripper_frame.stl is the sleeve in the gripper frame, for checks and renders.
 
 The pen leans 20 deg out of the open side of the jaws, so that it is vertical when the arm draws.
 Each clamp is a ring with a 90 deg V on the gripper side and a printed M8 thread on the other side.
@@ -116,6 +119,25 @@ def quat_T(pos_m, quat_wxyz) -> np.ndarray:
     q = np.array(quat_wxyz, float)
     q /= np.linalg.norm(q)
     return trimesh.transformations.translation_matrix(np.array(pos_m) * 1000) @ trimesh.transformations.quaternion_matrix(q)
+
+
+PRINT_UP = -U  # the sleeve prints with the pen axis vertical and the tip end up: the V faces are vertical walls
+
+
+def print_pose(up) -> np.ndarray:
+    """Rotation (4 x 4) that turns the direction `up` to +z and keeps x."""
+    zp, xp = np.asarray(up, float) / np.linalg.norm(up), np.array([1.0, 0.0, 0.0])
+    A = np.eye(4)
+    A[:3, :3] = np.vstack([xp, np.cross(zp, xp), zp])
+    return A
+
+
+def on_bed(tm: trimesh.Trimesh, A: np.ndarray) -> trimesh.Trimesh:
+    """A copy of `tm` turned by A, centred in x and y, with its lowest point at z = 0."""
+    m = tm.copy()
+    m.apply_transform(A)
+    m.apply_translation([-m.bounds[:, 0].mean(), -m.bounds[:, 1].mean(), -m.bounds[0, 2]])
+    return m
 
 
 def gripper(jaw_q: float = 0.0) -> dict:
@@ -356,9 +378,10 @@ def main() -> int:
     bad += ["lowest sleeve point above the tip_mm"] if low < FOAM + CLEAR else []
     bad += ["sleeve watertight"] if not tm.is_watertight else []
     st = to_trimesh(thumbscrew())
-    tm.export(ROOT / "print" / "sleeve.stl")
-    st.export(ROOT / "print" / "thumbscrew.stl")
-    to_trimesh(coupon()).export(ROOT / "print" / "thread_coupon.stl")
+    tm.export(ROOT / "results" / "sleeve_in_gripper_frame.stl")
+    on_bed(tm, print_pose(PRINT_UP)).export(ROOT / "print" / "sleeve.stl")
+    on_bed(st, trimesh.transformations.rotation_matrix(math.pi, [1, 0, 0])).export(ROOT / "print" / "thumbscrew.stl")
+    on_bed(to_trimesh(coupon()), np.eye(4)).export(ROOT / "print" / "thread_coupon.stl")
     rep = {"frame": "SO-101 MuJoCo `gripper` body frame, mm", "pen_axis_tip_to_top": np.round(U, 4).tolist(),
            "clamps_mm_above_tip": CLAMPS, "side_screw_xz_mm": PINCH,
            "mass_g_est": {"sleeve": round(print_mass(tm), 1), "thumbscrew_each": round(print_mass(st), 1)},

@@ -86,20 +86,44 @@ The cost of the sleeve is a shorter distance between the clamps (43 mm), and a h
 
 ## Print the parts
 
-The files are in [`print/`](print/):
+The files are in [`print/`](print/). Each file is already placed in its print orientation, so do not turn it in the slicer:
 
-| File | Quantity | Mass | Purpose |
-|---|---|---|---|
-| [`thread_coupon.stl`](print/thread_coupon.stl) | 1 | 2 g | A short piece of the M8 thread, to test the screw fit on your printer |
-| [`thumbscrew.stl`](print/thumbscrew.stl) | 3 | 2 g each | Two screws press the pen into the clamps. One screw presses the finger. |
-| [`sleeve.stl`](print/sleeve.stl) | 1 | 27 g | The sleeve with the two pen clamps |
+| File | Quantity | Mass | Purpose | Print orientation |
+|---|---|---|---|---|
+| [`thread_coupon.stl`](print/thread_coupon.stl) | 1 | 2 g | A short piece of the M8 thread, to test the screw fit on your printer | The hole is horizontal, like the thread holes of the sleeve. |
+| [`thumbscrew.stl`](print/thumbscrew.stl) | 3, and 1 spare | 2 g each | Two screws press the pen into the clamps. One screw presses the finger. | Head down |
+| [`sleeve.stl`](print/sleeve.stl) | 1 | 27 g | The sleeve with the two pen clamps | Pen axis vertical, tip end up |
 
-The masses use 0.2 mm layers, 4 walls (1.6 mm) and 40 % infill. I did not test a print orientation for the sleeve. It probably needs supports under the clamp rings.
+I use these starting settings. I did not test them in a print yet:
 
-1. Print `thread_coupon.stl` and one `thumbscrew.stl`. Print the screw with its head down.
+| Setting | Value | Why |
+|---|---|---|
+| Layer height | 0.2 mm | The usual value for a 0.4 mm nozzle. Thinner layers give smoother threads, but the print takes longer. |
+| Walls | 4, which is 1.6 mm | The clamp rings (3 mm) and the side walls (2.6 mm) become solid, and the threads (0.68 mm deep) are in solid plastic. |
+| Infill | 40 % for the sleeve and the coupon, 100 % for the screws | The infill changes only the thick areas. A solid screw is stronger, and it is only 2.1 g of plastic. |
+
+The masses in the table use 4 walls and 40 % infill.
+
+### Supports for the sleeve
+
+The print orientation of `sleeve.stl` keeps the supports off the faces that set the pen position. The sleeve stands on the end of the upper thread boss. Red faces need support:
+
+![The sleeve in its print orientation, from above and from below. Red faces need support. The green V faces and the yellow finger pocket need none. The blue face stands on the bed.](images/print-orientation.png)
+
+- **The V faces need no support.** They are vertical in this orientation. A support mark of 0.2 mm on a V face of the lower clamp would move the tip by about 0.3 mm.
+- **The finger pocket needs no support.** The pocket has only 0.15 mm of clearance, so support marks in it would stop the sleeve from sliding onto the finger.
+- **The supports stand outside the pocket.** [`cad/print_orientation.py`](cad/print_orientation.py) traces a column down from each face that needs support. Of 873 mm² of these faces, 586 mm² have columns on the bed and 287 mm² have columns on outside faces of the sleeve. No column passes through the pocket.
+- **Block the supports in the three thread holes.** The holes are 8 mm wide and horizontal, and supports would damage the threads.
+- **Use a brim.** The sleeve is 62 mm tall and stands on a face of only 127 mm².
+
+These results come from the CAD model, not from a print. The check uses a limit of 45° from vertical for supports, and your slicer can use a different limit. [`results/print_orientation.json`](results/print_orientation.json) compares 8 orientations.
+
+### Print order
+
+1. Print `thread_coupon.stl` and one `thumbscrew.stl`.
 2. Turn the screw into the coupon by hand.
 3. If the screw is too tight or too loose, change `FIT_THREAD` in [`cad/build.py`](cad/build.py). Then [rebuild the parts](#rebuild-the-parts) and print the coupon again.
-4. Print `sleeve.stl` and two more thumbscrews.
+4. Print `sleeve.stl` and three more thumbscrews. One screw is a spare.
 
 ## Fit the holder
 
@@ -218,6 +242,7 @@ I did not test the tablet with the arm yet. The first tests are the noise of a s
 - Six pens from 8 to 13 mm do not touch the sleeve or the gripper.
 - The three screws mesh with their threads, and their heads stay clear of their bosses.
 - The lowest point of the sleeve is 14 mm above the tip, so only the tip touches the paper.
+- In the print orientation of `sleeve.stl`, the V faces and the finger pocket need no support, and no support column passes through the pocket. [`cad/print_orientation.py`](cad/print_orientation.py) runs this check.
 
 The clamp rings and the side walls of the sleeve are 2.6 to 3 mm thick. The front skin of the sleeve, between the finger and the pen, is 0.85 mm thick. It must be thin, because the pen passes close to the finger, and it carries almost no load.
 
@@ -244,7 +269,7 @@ python3 -m venv .venv
 .venv/bin/python cad/build.py
 ```
 
-The build takes about one minute. It writes `print/*.stl` and `results/checks.json`, and it exits with code 1 if a check fails. All the dimensions are constants at the top of [`cad/build.py`](cad/build.py). To draw the clamp section again, install `matplotlib` and run `cad/figure_clamp_section.py`.
+The build takes about one minute. It writes `print/*.stl`, the sleeve in the gripper frame (`results/sleeve_in_gripper_frame.stl`) and `results/checks.json`. It exits with code 1 if a check fails. To check the print orientation, run `.venv/bin/python cad/print_orientation.py` after the build. All the dimensions are constants at the top of [`cad/build.py`](cad/build.py). To draw the clamp section again, install `matplotlib` and run `cad/figure_clamp_section.py`.
 
 ## The full story
 
