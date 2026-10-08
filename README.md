@@ -80,7 +80,7 @@ The cost of the sleeve is a shorter distance between the clamps (43 mm), and a h
 
 ## What you need
 
-- An FDM 3D printer and about 34 g of filament. PETG is the best choice, because it creeps less than PLA under the screw force. PLA also works.
+- An FDM 3D printer and about 34 g of filament. I will print the first holder in PLA. No filament is tested yet.
 - A soft pad, 2 to 5 mm thick, to put under the paper. For example, use a mouse pad, a felt sheet or thin foam. The pen is fixed in the holder, so the pad takes up small errors in the height of the arm. On a Wacom tablet, do not use the pad.
 - A stock SO-101 follower arm. The optional compliant gripper has a different finger, and the sleeve does not fit it.
 
