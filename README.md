@@ -27,7 +27,7 @@ The first set is printed, and the sleeve is on my SO-101. The two pictures below
 
 <table>
 <tr>
-<td align="center" valign="middle"><img src="media/first-print-timelapse.webp" width="460" alt="Time-lapse of the print: four thumbscrews, a thread coupon and the sleeve grow on the bed of a Bambu Lab printer. The sleeve stands up on tree supports."></td>
+<td align="center" valign="middle"><img src="media/first-print-timelapse.webp" width="460" alt="Time-lapse of the print: four thumbscrews, two thread coupons and the sleeve grow on the bed of a Bambu Lab printer. The sleeve stands up on tree supports."></td>
 <td align="center" valign="middle"><img src="media/on-the-arm.webp" width="260" alt="The printed sleeve on the fixed finger of the SO-101. A pen is in both clamps, and the Wacom Intuos S tablet is in front of the arm."></td>
 </tr>
 <tr>
@@ -38,7 +38,7 @@ The first set is printed, and the sleeve is on my SO-101. The two pictures below
 
 What the videos show:
 
-- **The print.** A Bambu Lab printer makes the 4 thumbscrews, a thread coupon and the sleeve in one job. The screws print head down. The sleeve stands up, and the printer builds tree supports under it.
+- **The print.** A Bambu Lab printer makes the 4 thumbscrews, two thread coupons and the sleeve in one job. The screws print head down. The sleeve stands up, and the printer builds tree supports under it.
 - **The holder on the arm.** The sleeve is on the stock fixed finger, and the pen is in both clamps with a thumbscrew on each clamp. The Wacom Intuos S is in front of the arm, and the pen tip is above it.
 
 The result of the first try:
