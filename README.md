@@ -23,16 +23,16 @@ The holder on the stock gripper, from four sides. The blue sleeve is the printed
 
 ## The first print and the first fit
 
-The first set is printed, and the sleeve is on my SO-101. Select a picture to play its video. The videos have no sound.
+The first set is printed, and the sleeve is on my SO-101. The two pictures below play the full videos in a loop, with no sound. The MP4 files have a better quality.
 
 <table>
 <tr>
-<td align="center" valign="top"><a href="media/first-print-timelapse.mp4"><img src="media/first-print-timelapse.webp" width="460" alt="Time-lapse of the print: four thumbscrews, a thread coupon and the sleeve grow on the bed of a Bambu Lab printer. The sleeve stands up on tree supports."></a></td>
-<td align="center" valign="top"><a href="media/on-the-arm.mp4"><img src="media/on-the-arm.webp" width="260" alt="The printed sleeve on the fixed finger of the SO-101. A pen is in both clamps, and the Wacom Intuos S tablet is in front of the arm."></a></td>
+<td align="center" valign="middle"><img src="media/first-print-timelapse.webp" width="460" alt="Time-lapse of the print: four thumbscrews, a thread coupon and the sleeve grow on the bed of a Bambu Lab printer. The sleeve stands up on tree supports."></td>
+<td align="center" valign="middle"><img src="media/on-the-arm.webp" width="260" alt="The printed sleeve on the fixed finger of the SO-101. A pen is in both clamps, and the Wacom Intuos S tablet is in front of the arm."></td>
 </tr>
 <tr>
-<td align="center"><b>The print</b>, 15 s time-lapse<br><a href="media/first-print-timelapse.mp4">Play the video</a> (MP4, 3.4 MB)</td>
-<td align="center"><b>The holder on the arm</b>, 13 s<br><a href="media/on-the-arm.mp4">Play the video</a> (MP4, 2.6 MB)</td>
+<td align="center"><b>The print</b>, 15 s time-lapse<br><a href="https://github.com/Hadrien-Cornier/so101-pen-holder/raw/main/media/first-print-timelapse.mp4">Download the MP4</a> (3.4 MB)</td>
+<td align="center"><b>The holder on the arm</b>, 13 s<br><a href="https://github.com/Hadrien-Cornier/so101-pen-holder/raw/main/media/on-the-arm.mp4">Download the MP4</a> (2.6 MB)</td>
 </tr>
 </table>
 
