@@ -5,7 +5,7 @@ This is a printed sleeve that holds a pen on the stock gripper of the SO-101 rob
 ![The SO-101 in a drawing pose with the pen holder. The blue sleeve is on the fixed finger, and the pen is vertical on the paper.](images/drawing-pose.png)
 
 > [!NOTE]
-> **Status: first set printed, not tested yet.** The parts pass every collision check in CAD, and the first printed set is on my arm. See [the videos](#the-first-print-and-the-first-fit). I have not measured anything yet: not the play at the tip, not the tip position, not the hold. Every number on this page is a design value, not a measurement. If you print the holder, you can report the result in an issue.
+> **Status: the first printed set fits, but nothing is measured yet.** The parts pass every collision check in CAD. The first set printed in PLA, the sleeve slid onto my finger, and the screws turned in on the first try, with no change to the design. I felt no play by hand. I have not measured the play, the tip position or the hold. Every number on this page is a design value, not a measurement. If you print the holder, you can report the result in an issue.
 
 | | |
 |---|---|
@@ -41,7 +41,14 @@ What the videos show:
 - **The print.** A Bambu Lab printer makes the 4 thumbscrews, a thread coupon and the sleeve in one job. The screws print head down. The sleeve stands up, and the printer builds tree supports under it.
 - **The holder on the arm.** The sleeve is on the stock fixed finger, and the pen is in both clamps with a thumbscrew on each clamp. The Wacom Intuos S is in front of the arm, and the pen tip is above it.
 
-I have not tested these points yet: the play at the tip, the tip position, the hold of the sleeve in the down direction, and a reading on the tablet. The videos show no drawing and no tablet reading. The [Limits](#limits) section lists the open points.
+The result of the first try:
+
+- **The sleeve fitted.** It slid onto the stock fixed finger with no filing and no change to the design.
+- **The screws fitted.** They turned in on the first try, with no change to `FIT_THREAD`.
+- **No play by hand.** I felt no play at the pen. This is a hand test, not a measurement.
+- **The printer followed the settings.** The first set printed in PLA with the settings in [Print the parts](#print-the-parts).
+
+I have not measured these points yet: the play at the tip, the tip position, the hold of the sleeve in the down direction, and a reading on the tablet. The videos show no drawing and no tablet reading. The [Limits](#limits) section lists the open points.
 
 ## Why a pen on a robot arm
 
@@ -102,7 +109,7 @@ The cost of the sleeve is a shorter distance between the clamps (43 mm), and a h
 
 ## What you need
 
-- An FDM 3D printer and about 34 g of filament. I did not compare filaments, so I do not recommend one.
+- An FDM 3D printer and about 34 g of filament. The first set printed in PLA and fitted. I did not compare filaments, so I do not recommend one.
 - A soft pad, 2 to 5 mm thick, to put under the paper. For example, use a mouse pad, a felt sheet or thin foam. The pen is fixed in the holder, so the pad takes up small errors in the height of the arm. On a Wacom tablet, do not use the pad.
 - A stock SO-101 follower arm. The optional compliant gripper has a different finger, and the sleeve does not fit it.
 
@@ -116,7 +123,7 @@ The files are in [`print/`](print/). Each file is already placed in its print or
 | [`thumbscrew.stl`](print/thumbscrew.stl) | 3, and 1 spare | 2 g each | Two screws press the pen into the clamps. One screw presses the finger. | Head down |
 | [`sleeve.stl`](print/sleeve.stl) | 1 | 27 g | The sleeve with the two pen clamps | Pen axis vertical, tip end up |
 
-These are the settings that I asked for in the first print. I did not compare other settings:
+The first set printed in PLA with these settings, and it fitted on the first try. I did not compare other settings:
 
 | Setting | Value | Why |
 |---|---|---|
@@ -138,7 +145,7 @@ The print orientation of `sleeve.stl` keeps the supports off the faces that set 
 - **Block the supports in the three thread holes.** The holes are 8 mm wide and horizontal, and supports would damage the threads.
 - **Use a brim.** The sleeve is 62 mm tall and stands on a face of only 127 mm².
 
-These results come from the CAD model, not from a print. The check uses a limit of 45° from vertical for supports, and your slicer can use a different limit. [`results/print_orientation.json`](results/print_orientation.json) compares 8 orientations.
+The support analysis comes from the CAD model. The first print used this orientation and these support rules, and the sleeve and the screws fitted. That is one print on one printer, and I did not print the other orientations. The check uses a limit of 45° from vertical for supports, and your slicer can use a different limit. [`results/print_orientation.json`](results/print_orientation.json) compares 8 orientations.
 
 ### Print order
 
@@ -270,7 +277,7 @@ The clamp rings and the side walls of the sleeve are 2.6 to 3 mm thick. The fron
 
 ## Limits
 
-- **One printed set, not measured.** The sleeve is printed once and is on one arm. I did not measure the play, the tip position or the hold yet. The fit of the pocket comes from the official CAD of the finger. If your printed finger is a little larger or smaller, the fit changes. Test the sleeve on the finger before you put the pen in.
+- **One printed set, not measured.** The sleeve is printed once and is on one arm. It slid on and the screws turned in on the first try, and I felt no play by hand. I did not measure the play, the tip position or the hold yet. The pocket comes from the official CAD of the finger. If your printed finger is a little larger or smaller, the fit changes. Test the sleeve on the finger before you put the pen in.
 - **Friction in the down direction.** Nothing locks the sleeve positively in the down direction. A hard knock can move it, and plastic creeps with time. Tighten the side screw before each session.
 - **A short clamp span.** The finger is short, so the clamps are only 43 mm apart. The V clamps have no play, but I did not calculate how much the sleeve bends under the paper drag.
 - **The printed threads.** Plastic threads wear after many pen changes. If a thread wears out, print a new screw. If the hole wears out, print a new sleeve.
