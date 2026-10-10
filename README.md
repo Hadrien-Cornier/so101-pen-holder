@@ -5,7 +5,7 @@ This is a printed sleeve that holds a pen on the stock gripper of the SO-101 rob
 ![The SO-101 in a drawing pose with the pen holder. The blue sleeve is on the fixed finger, and the pen is vertical on the paper.](images/drawing-pose.png)
 
 > [!NOTE]
-> **Status: design only.** The parts pass every collision check in CAD. Nobody has printed or tested them yet. Every number on this page is a design value, not a measurement. If you print the holder, you can report the result in an issue.
+> **Status: first set printed, not tested yet.** The parts pass every collision check in CAD, and the first printed set is on my arm. See [the videos](#the-first-print-and-the-first-fit). I have not measured anything yet: not the play at the tip, not the tip position, not the hold. Every number on this page is a design value, not a measurement. If you print the holder, you can report the result in an issue.
 
 | | |
 |---|---|
@@ -20,6 +20,28 @@ This is a printed sleeve that holds a pen on the stock gripper of the SO-101 rob
 The holder on the stock gripper, from four sides. The blue sleeve is the printed part, and the orange parts are the printed thumbscrews:
 
 ![The pen holder on the stock SO-101 gripper, seen from four sides](images/on-gripper.png)
+
+## The first print and the first fit
+
+The first set is printed, and the sleeve is on my SO-101. Select a picture to play its video. The videos have no sound.
+
+<table>
+<tr>
+<td align="center" valign="top"><a href="media/first-print-timelapse.mp4"><img src="media/first-print-timelapse.webp" width="460" alt="Time-lapse of the print: four thumbscrews, a thread coupon and the sleeve grow on the bed of a Bambu Lab printer. The sleeve stands up on tree supports."></a></td>
+<td align="center" valign="top"><a href="media/on-the-arm.mp4"><img src="media/on-the-arm.webp" width="260" alt="The printed sleeve on the fixed finger of the SO-101. A pen is in both clamps, and the Wacom Intuos S tablet is in front of the arm."></a></td>
+</tr>
+<tr>
+<td align="center"><b>The print</b>, 15 s time-lapse<br><a href="media/first-print-timelapse.mp4">Play the video</a> (MP4, 3.4 MB)</td>
+<td align="center"><b>The holder on the arm</b>, 13 s<br><a href="media/on-the-arm.mp4">Play the video</a> (MP4, 2.6 MB)</td>
+</tr>
+</table>
+
+What the videos show:
+
+- **The print.** A Bambu Lab printer makes the 4 thumbscrews, a thread coupon and the sleeve in one job. The screws print head down. The sleeve stands up, and the printer builds tree supports under it.
+- **The holder on the arm.** The sleeve is on the stock fixed finger, and the pen is in both clamps with a thumbscrew on each clamp. The Wacom Intuos S is in front of the arm, and the pen tip is above it.
+
+I have not tested these points yet: the play at the tip, the tip position, the hold of the sleeve in the down direction, and a reading on the tablet. The videos show no drawing and no tablet reading. The [Limits](#limits) section lists the open points.
 
 ## Why a pen on a robot arm
 
@@ -80,7 +102,7 @@ The cost of the sleeve is a shorter distance between the clamps (43 mm), and a h
 
 ## What you need
 
-- An FDM 3D printer and about 34 g of filament. I will print the first holder in PLA. No filament is tested yet.
+- An FDM 3D printer and about 34 g of filament. I did not compare filaments, so I do not recommend one.
 - A soft pad, 2 to 5 mm thick, to put under the paper. For example, use a mouse pad, a felt sheet or thin foam. The pen is fixed in the holder, so the pad takes up small errors in the height of the arm. On a Wacom tablet, do not use the pad.
 - A stock SO-101 follower arm. The optional compliant gripper has a different finger, and the sleeve does not fit it.
 
@@ -94,7 +116,7 @@ The files are in [`print/`](print/). Each file is already placed in its print or
 | [`thumbscrew.stl`](print/thumbscrew.stl) | 3, and 1 spare | 2 g each | Two screws press the pen into the clamps. One screw presses the finger. | Head down |
 | [`sleeve.stl`](print/sleeve.stl) | 1 | 27 g | The sleeve with the two pen clamps | Pen axis vertical, tip end up |
 
-I use these starting settings. I did not test them in a print yet:
+These are the settings that I asked for in the first print. I did not compare other settings:
 
 | Setting | Value | Why |
 |---|---|---|
@@ -230,7 +252,7 @@ Without the soft pad, a height error of the arm pushes the pen into the tablet o
 
 In the arm model, the arm reaches the full usable area. With the pen vertical, an inverse kinematics solution exists at all 28 points of a 4 × 7 grid, at contact and at 3 mm hover. The lowest point of the arm stays 20 mm above the tablet. These values come from the [MuJoCo Menagerie SO-101 model](https://github.com/google-deepmind/mujoco_menagerie/tree/main/robotstudio_so101), not from the real arm. The results are in [`results/tablet_reach.json`](results/tablet_reach.json).
 
-I did not test the tablet with the arm yet. The first tests are the noise of a still pen with the servos off and on, the reading at hover heights from 0 to 7 mm, and the effect of the servo magnets near the pen.
+The [videos](#the-first-print-and-the-first-fit) show the tablet in front of the arm, but I did not record a reading with the arm yet. The first tests are the noise of a still pen with the servos off and on, the reading at hover heights from 0 to 7 mm, and the effect of the servo magnets near the pen.
 
 ## What the CAD checks
 
@@ -248,7 +270,7 @@ The clamp rings and the side walls of the sleeve are 2.6 to 3 mm thick. The fron
 
 ## Limits
 
-- **Not printed yet.** The fit of the pocket comes from the official CAD of the finger. If your printed finger is a little larger or smaller, the fit changes. Test the sleeve on the finger before you put the pen in.
+- **One printed set, not measured.** The sleeve is printed once and is on one arm. I did not measure the play, the tip position or the hold yet. The fit of the pocket comes from the official CAD of the finger. If your printed finger is a little larger or smaller, the fit changes. Test the sleeve on the finger before you put the pen in.
 - **Friction in the down direction.** Nothing locks the sleeve positively in the down direction. A hard knock can move it, and plastic creeps with time. Tighten the side screw before each session.
 - **A short clamp span.** The finger is short, so the clamps are only 43 mm apart. The V clamps have no play, but I did not calculate how much the sleeve bends under the paper drag.
 - **The printed threads.** Plastic threads wear after many pen changes. If a thread wears out, print a new screw. If the hole wears out, print a new sleeve.
